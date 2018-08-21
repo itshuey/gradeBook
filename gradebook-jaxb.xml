@@ -57,6 +57,13 @@
             <percent>83.3</percent>
             <grade>B</grade>
         </assignments>
+        <assignments>
+            <name>Pset2</name>
+            <fullScore>20</fullScore>
+            <score>19</score>
+            <percent>95.0</percent>
+            <grade>A</grade>
+        </assignments>
         <name>All</name>
     </groups>
     <groups>
@@ -87,6 +94,13 @@
             <score>25</score>
             <percent>83.3</percent>
             <grade>B</grade>
+        </assignments>
+        <assignments>
+            <name>Pset2</name>
+            <fullScore>20</fullScore>
+            <score>19</score>
+            <percent>95.0</percent>
+            <grade>A</grade>
         </assignments>
         <name>Homework</name>
     </groups>
