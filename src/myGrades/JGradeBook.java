@@ -79,6 +79,7 @@ import javax.xml.bind.Unmarshaller;
 // Drag and drop the assignments / Groups
 // More JFrames
 // Fix ComboBox binding- m_names might be necessary??
+// Update on group edit? (Or keep this out on purpose)
 
 
 ///////////////////////// DESIGN Q's ///////////////////////////
@@ -418,7 +419,7 @@ public class JGradeBook extends JFrame {
 							// Same JFrame as edit group name!
 							GradeGroup group = new GradeGroup("New Group");
 							JGradeGroupDialog dialog = new JGradeGroupDialog(m_names, group);
-							dialog.setLocationRelativeTo(m_contentPane);
+							dialog.setLocation(210, 180);
 							dialog.setVisible(true);
 							m_groups.addGroup(group);
 							// We want to select the new group, which is automatically placed at the end
@@ -434,10 +435,18 @@ public class JGradeBook extends JFrame {
 					m_editGroupButton.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							// See JGradeGroupDialog for details
-							GradeGroup group = m_groups.getGroups().get(m_groupList.getSelectedIndex());
-							JGradeGroupDialog dialog = new JGradeGroupDialog(m_names, group);
-							dialog.setLocationRelativeTo(m_contentPane);
-							dialog.setVisible(true);
+							int index = m_groupList.getSelectedIndex();							
+							// Make sure you can't edit (All) folder!
+							if (index == 0) {
+								JGradeGroupError dialog = new JGradeGroupError();
+								dialog.setLocation(230, 180);
+								dialog.setVisible(true);							
+							} else {	
+								GradeGroup group = m_groups.getGroups().get(m_groupList.getSelectedIndex());
+								JGradeGroupDialog dialog = new JGradeGroupDialog(m_names, group);
+								dialog.setLocation(180, 180);
+								dialog.setVisible(true);
+							}
 						}
 					});
 					groupToolbar.add(m_editGroupButton);
@@ -446,25 +455,26 @@ public class JGradeBook extends JFrame {
 					m_deleteGroupButton = new JButton("Delete");
 					m_deleteGroupButton.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							if (!m_AssignmentTable.getSelectionModel().isSelectionEmpty()) {
-								m_AssignmentTable.clearSelection();
-								// Need to set fields to clear so you can't edit ghost item
-								// Could possible simplify following into a helper method but its only needed once or twice
-								m_nameTF.setText("");
-								m_scoreTF.setText("");
-								m_gradeTF.setText("");
-								m_percentTF.setText("");
-								m_totalScoreTF.setText("");																						                 					                					                           
-								m_groupList.repaint();
-								m_AssignmentTable.repaint();
-							}
-							int index = m_groupList.getSelectedIndex();
-							
+							int index = m_groupList.getSelectedIndex();							
 							// Make sure you can't delete (All) folder!
 							if (index == 0) {
-								// FLAG 2: Jframe error message
-								
-							} else {
+								JGradeGroupError dialog = new JGradeGroupError();
+								dialog.setLocation(230, 180);
+								dialog.setVisible(true);								
+							} else {	
+								if (!m_AssignmentTable.getSelectionModel().isSelectionEmpty()) {
+									m_AssignmentTable.clearSelection();
+									// Need to set fields to clear so you can't edit ghost item
+									// Could possible simplify following into a helper method but its only needed once or twice
+									m_nameTF.setText("");
+									m_scoreTF.setText("");
+									m_gradeTF.setText("");
+									m_percentTF.setText("");
+									m_totalScoreTF.setText("");																						                 					                					                           
+									m_groupList.repaint();
+									m_AssignmentTable.repaint();
+								}
+
 								// After deleting a group, we need to remove those Assignments from (All)
 								// This is where relink() was crucial!
 								GradeGroup delete = m_groups.getGroups().get(index);
@@ -473,20 +483,21 @@ public class JGradeBook extends JFrame {
 									all.removeAssignment(assign);
 								}
 								m_groups.removeGroup(delete);
-							}						
-							// I played around with different autoselect styles and this felt best:
-							// Select the group that was formerly in its place.
-							// Or if it was the last one, select the new last.
-							if (index <= m_groups.getGroups().size()-1) {
-								m_groupList.setSelectedIndex(index);
-							} else {
-								m_groupList.setSelectedIndex(index-1);
+													
+								// I played around with different autoselect styles and this felt best:
+								// Select the group that was formerly in its place.
+								// Or if it was the last one, select the new last.
+								if (index <= m_groups.getGroups().size()-1) {
+									m_groupList.setSelectedIndex(index);
+								} else {
+									m_groupList.setSelectedIndex(index-1);
+								}
+								
+								// To be 100% honest, not quite sure what revalidate does but it works..
+								m_groupList.revalidate();
+								m_groupList.repaint();
+								m_AssignmentTable.repaint();
 							}
-							
-							// To be 100% honest, not quite sure what revalidate does but it works..
-							m_groupList.revalidate();
-							m_groupList.repaint();
-							m_AssignmentTable.repaint();
 						}
 					});
 					groupToolbar.add(m_deleteGroupButton);

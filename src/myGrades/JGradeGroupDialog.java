@@ -30,7 +30,7 @@ import javax.swing.JTextField;
 
 
 // To-Do:
-// Remove tampering with (all) group
+// Make cancelling actually cancel
 // Actionevent for enter? So annoying to manually click ok
 
 /**
