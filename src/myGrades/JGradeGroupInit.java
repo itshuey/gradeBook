@@ -50,19 +50,12 @@ public class JGradeGroupInit extends JFrame {
 		contentPane.setLayout(gbl_contentPane);
 		
 		JLabel lblNewLabel = new JLabel("Welcome!");
-		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
+		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 22));
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 0);
 		gbc_lblNewLabel.gridx = 0;
 		gbc_lblNewLabel.gridy = 1;
 		contentPane.add(lblNewLabel, gbc_lblNewLabel);
-		
-		JComboBox comboBox = new JComboBox();
-		GridBagConstraints gbc_comboBox = new GridBagConstraints();
-		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox.gridx = 0;
-		gbc_comboBox.gridy = 4;
-		contentPane.add(comboBox, gbc_comboBox);
 	}
 
 }

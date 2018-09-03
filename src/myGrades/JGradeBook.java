@@ -60,6 +60,10 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.util.Properties;
+
 
 /*************************************************************
 				  ~ CURRENLTY WORKING ON: ~
@@ -93,7 +97,7 @@ import javax.xml.bind.Unmarshaller;
  * @author huey_
  * 
  * Shouts to WindowBuilder tutorials
- * v.02  
+ * v.03  
  */
 
 public class JGradeBook extends JFrame {
@@ -163,6 +167,35 @@ public class JGradeBook extends JFrame {
 	public static void main(String[] args) throws JAXBException, IOException {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				Properties prop = new Properties();
+				OutputStream output = null;
+
+				try {
+
+					output = new FileOutputStream("config.properties");
+
+					// set the properties value
+					prop.setProperty("A+_range", "97.5");
+					prop.setProperty("A_range", "92.5");
+					prop.setProperty("A-_range", "89.5");
+
+					// save properties to project root folder
+					prop.store(output, null);
+
+				} catch (IOException io) {
+					io.printStackTrace();
+				} finally {
+					if (output != null) {
+						try {
+							output.close();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+
+				}
+			  
+			
 				try {
 					JGradeBook frame = new JGradeBook();
 					frame.setVisible(true);

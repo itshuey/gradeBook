@@ -6,6 +6,10 @@ import javax.xml.bind.*;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
 /**
  * @author huey_
@@ -129,25 +133,50 @@ public class Assignment extends AbstractModelObject {
 		}
 		
 		double score = Double.parseDouble(asn_percent);
-		if (score > 97.5) {
-			return "A+";
-		} else if (score > 92.5) {
-			return "A";
-		} else if (score > 89.5) {
-			return "A-";
-		} else if (score > 87.5) {
-			return "B+";
-		} else if (score > 82.5) {
-			return "B";
-		} else if (score > 79.5) {
-			return "B-";
-		} else if (score > 69.5) {
-			return "C";
-		} else if (score >= 0) {
-			return "F";
-		} else {
-			return "N/A";
-		}
+		
+		// READ PROPERTIES FILE
+		Properties prop = new Properties();
+		InputStream input = null;
+		String grade = "";
+
+		try {
+			input = new FileInputStream("config.properties");
+
+			// load a properties file
+			prop.load(input);
+
+			if (score > Double.parseDouble(prop.getProperty("A+_range"))) {
+				grade = "A+";
+			} else if (score > Double.parseDouble(prop.getProperty("A_range"))) {
+				grade = "A";
+			} else if (score > Double.parseDouble(prop.getProperty("A-_range"))) {
+				grade = "A-";
+			} else if (score > 87.5) {
+				grade = "B+";
+			} else if (score > 82.5) {
+				grade = "B";
+			} else if (score > 79.5) {
+				grade = "B-";
+			} else if (score > 69.5) {
+				grade = "C";
+			} else if (score >= 0) {
+				grade = "F";
+			} else {
+				grade = "N/A";
+			}
+
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		} finally {
+			if (input != null) {
+				try {
+					input.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}	
+		return grade;
 	}
 	
 	
