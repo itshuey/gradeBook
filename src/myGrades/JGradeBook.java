@@ -178,6 +178,14 @@ public class JGradeBook extends JFrame {
 					prop.setProperty("A+_range", "97.5");
 					prop.setProperty("A_range", "92.5");
 					prop.setProperty("A-_range", "89.5");
+					prop.setProperty("B+_range", "87.5");
+					prop.setProperty("B_range", "82.5");
+					prop.setProperty("B-_range", "79.5");
+					prop.setProperty("C+_range", "77.5");
+					prop.setProperty("C_range", "72.5");
+					prop.setProperty("C-_range", "69.5");
+					prop.setProperty("D_range", "59.5");
+					prop.setProperty("F_range", "0");
 
 					// save properties to project root folder
 					prop.store(output, null);
