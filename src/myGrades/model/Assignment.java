@@ -151,13 +151,13 @@ public class Assignment extends AbstractModelObject {
 				grade = "A";
 			} else if (score > Double.parseDouble(prop.getProperty("A-_range"))) {
 				grade = "A-";
-			} else if (score > 87.5) {
+			} else if (score > Double.parseDouble(prop.getProperty("B+_range"))) {
 				grade = "B+";
-			} else if (score > 82.5) {
+			} else if (score > Double.parseDouble(prop.getProperty("B_range"))) {
 				grade = "B";
-			} else if (score > 79.5) {
+			} else if (score > Double.parseDouble(prop.getProperty("B-_range"))) {
 				grade = "B-";
-			} else if (score > 69.5) {
+			} else if (score > Double.parseDouble(prop.getProperty("C_range"))) {
 				grade = "C";
 			} else if (score >= 0) {
 				grade = "F";

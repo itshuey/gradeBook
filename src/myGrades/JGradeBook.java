@@ -168,6 +168,10 @@ public class JGradeBook extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				Properties prop = new Properties();
+				
+				/*
+				 
+				// Initializing property values
 				OutputStream output = null;
 
 				try {
@@ -202,7 +206,7 @@ public class JGradeBook extends JFrame {
 					}
 
 				}
-			  
+			    */
 			
 				try {
 					JGradeBook frame = new JGradeBook();
