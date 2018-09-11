@@ -48,7 +48,7 @@ public class JGradeGroupError extends JDialog {
 		gbl_contentPanel.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		contentPanel.setLayout(gbl_contentPanel);
 		{
-			JLabel lblCantEdit = new JLabel("The \"All\" folder is not editable!");
+			JLabel lblCantEdit = new JLabel("The \"All\" folder is immutable!");
 			lblCantEdit.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
 			GridBagConstraints gbc_lblCantEdit = new GridBagConstraints();
 			gbc_lblCantEdit.fill = GridBagConstraints.VERTICAL;

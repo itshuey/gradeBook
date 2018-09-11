@@ -73,8 +73,6 @@ import java.util.Properties;
 // FLAG 1: Currently, editing assignment scores updates group totals on enter press.
 // This may be better than having it live update (current implementation one key behind).
 
-// FLAG 2: Jframe delete group dialog needed
-
 
 /////////////////////////// TO-DO //////////////////////////////
 // Make one way of tracking updates, whether through actionEvent or documentListener
