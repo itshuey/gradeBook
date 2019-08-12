@@ -64,6 +64,13 @@
             <percent>95.0</percent>
             <grade>A</grade>
         </assignments>
+        <assignments>
+            <name>Test 2</name>
+            <fullScore>40</fullScore>
+            <score>41</score>
+            <percent>102.5</percent>
+            <grade>A+</grade>
+        </assignments>
         <name>All</name>
     </groups>
     <groups>
@@ -134,6 +141,13 @@
             <fullScore>100</fullScore>
             <score>98</score>
             <percent>98.0</percent>
+            <grade>A+</grade>
+        </assignments>
+        <assignments>
+            <name>Test 2</name>
+            <fullScore>40</fullScore>
+            <score>41</score>
+            <percent>102.5</percent>
             <grade>A+</grade>
         </assignments>
         <name>Test</name>
