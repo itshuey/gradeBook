@@ -152,7 +152,7 @@
     </pluginRepositories>
 
     <properties>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
         <args4j.version>1.0</args4j.version>
 
         <module.path>${project.build.directory}/mods</module.path>
