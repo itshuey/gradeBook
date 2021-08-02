@@ -63,7 +63,7 @@
     </description>
 
     <properties>
-        <ant.version>1.10.2</ant.version>
+        <ant.version>1.10.11</ant.version>
     </properties>
 
     <dependencyManagement>
